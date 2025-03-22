@@ -17,8 +17,9 @@ class Wizard extends Model
 
     protected $fillable = ['name', 'age', 'magic_level'];
 
-    public function potions(){
+    public function potions()
+    {
         return $this->belongsToMany(Potion::class, 'wizards_potions', 'wizard_id', 'potion_id')
-        ->withPivot('date_brewed');
+            ->withPivot('date_brewed');
     }
 }

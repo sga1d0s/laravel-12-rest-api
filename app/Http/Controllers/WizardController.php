@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Wizard;
 use Illuminate\Http\Request;
 
 class WizardController extends Controller
@@ -12,6 +13,7 @@ class WizardController extends Controller
     public function index()
     {
         //
+        return Wizard::with("ingredients", "potions")->get();
     }
 
     /**
@@ -20,6 +22,13 @@ class WizardController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'age' => 'required|integer|min:1',
+            'magic_level' => 'required|integer|min:1',
+        ]);
+
+        return Wizard::create($request->all());
     }
 
     /**
@@ -28,6 +37,7 @@ class WizardController extends Controller
     public function show(string $id)
     {
         //
+        return Wizard::with('ingredients', 'potions')->findOrFail($id);
     }
 
     /**
@@ -36,6 +46,10 @@ class WizardController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $wizard = Wizard::findOrFail($id);
+        $wizard->update($request->all());
+
+        return $wizard;
     }
 
     /**
@@ -44,5 +58,7 @@ class WizardController extends Controller
     public function destroy(string $id)
     {
         //
+        Wizard::destroy($id);
+        return response()->json(['message' => 'Wizard deleted']);
     }
 }
