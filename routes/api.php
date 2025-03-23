@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\PotionController;
 use App\Http\Controllers\IngredientController;
