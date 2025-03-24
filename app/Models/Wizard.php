@@ -12,7 +12,7 @@ class Wizard extends Model
     use HasFactory;
 
     protected $table = 'wizards';
-    protected $primaryKey = 'wizards_id';
+    protected $primaryKey = 'wizard_id';
     public $timestamps = false;
 
     protected $fillable = ['name', 'age', 'magic_level'];
