@@ -13,7 +13,7 @@ class WizardController extends Controller
     public function index()
     {
         //
-        return Wizard::with("ingredients", "potions")->get();
+        return Wizard::with("potions")->get();
     }
 
     /**

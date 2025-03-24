@@ -13,7 +13,7 @@ class IngredientController extends Controller
     public function index()
     {
         //
-        return Ingredient::with('potions', 'wizards')->get();
+        return Ingredient::with('potions')->get();
     }
 
     /**
