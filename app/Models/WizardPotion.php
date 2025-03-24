@@ -14,5 +14,5 @@ class WizardPotion extends Model
     protected $table = 'wizards_potions';
     public $timestamps = false;
 
-    protected $fillable = ['wizards_id', 'potion_id', 'date_brewed'];
+    protected $fillable = ['wizard_id', 'potion_id', 'date_brewed'];
 }
