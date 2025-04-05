@@ -53,8 +53,15 @@ class PotionController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
-    {
-        Potion::destroy($id);
-        return response()->json(['message' => 'Potion deleted']);
-    }
+{
+    $potion = Potion::findOrFail($id);
+
+    // eliminar antes relaciones
+    $potion->ingredients()->detach();
+    $potion->wizards()->detach();
+
+    $potion->delete();
+
+    return response()->json(['message' => 'Potion deleted']);
+}
 }
